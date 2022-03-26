@@ -33,7 +33,11 @@ exports.createUser = (req, res, next) => {
         email, name, password: hash,
       })
         .then((user) => {
-          sendData({ dataType: 'user' }, 201, user, res);
+          res.status(200).send({
+            name: user.name,
+            _id: user._id,
+            email: user.email,
+          });
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
@@ -78,31 +82,11 @@ exports.login = (req, res, next) => {
 exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id).orFail()
     .then((user) => {
-      sendData({ dataType: 'user' }, 200, user, res);
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError(incorrectData));
-      } else if (err.name === 'DocumentNotFoundError') {
-        next(new NotFoundError(userNotFound));
-      } else next(err);
-    });
-};
-
-// ПОЛУЧЕНИЕ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
-exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => {
-      sendData({ dataType: 'users' }, 200, users, res);
-    })
-    .catch(next);
-};
-
-// ПОЛУЧЕНИЕ ПОЛЬЗОВАТЕЛЯ ПО ID
-exports.getUserById = (req, res, next) => {
-  User.findById(req.params.userId).orFail()
-    .then((user) => {
-      sendData({ dataType: 'user' }, 200, user, res);
+      res.status(200).send({
+        name: user.name,
+        _id: user._id,
+        email: user.email,
+      });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
