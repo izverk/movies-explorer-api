@@ -2,7 +2,14 @@ const { Joi } = require('celebrate');
 
 exports.userCreationJoiScheme = {
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  }),
+};
+
+exports.userLoginJoiScheme = {
+  body: Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
   }),
@@ -12,12 +19,6 @@ exports.userUpdateJoiScheme = {
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
     about: Joi.string().min(2).max(30).required(),
-  }),
-};
-
-exports.userParamsJoiScheme = {
-  params: Joi.object().keys({
-    userId: Joi.string().length(24).hex().required(),
   }),
 };
 

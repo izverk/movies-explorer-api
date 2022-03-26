@@ -7,7 +7,10 @@ const routes = require('./routes/index');
 // const { auth } = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { login, createUser } = require('./controllers/users');
-const { userCreationJoiScheme } = require('./validation/joiSchemes');
+const {
+  userCreationJoiScheme,
+  userLoginJoiScheme,
+} = require('./validation/joiSchemes');
 // const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -34,7 +37,7 @@ app.use(requestLogger);
 
 // роуты, не требующие авторизации (регистрация и вход)
 app.post('/signup', celebrate(userCreationJoiScheme), createUser);
-app.post('/signin', celebrate(userCreationJoiScheme), login);
+app.post('/signin', celebrate(userLoginJoiScheme), login);
 
 // // защита маршрутов авторизацией (проверка токена)
 // app.use(auth);
