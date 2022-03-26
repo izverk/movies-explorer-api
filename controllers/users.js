@@ -18,7 +18,6 @@ const {
   mongoDuplicateKeyErrorCode,
   mongoDuplicateKey,
   incorrectEmailOrPassword,
-  incorrectAvatarLink,
   secretKey,
 } = require('../utils/constants');
 
@@ -123,23 +122,6 @@ exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === ('CastError' || 'ValidationError')) {
         next(new BadRequestError(incorrectData));
-      } else if (err.name === 'DocumentNotFoundError') {
-        next(new NotFoundError(userNotFound));
-      } else next(err);
-    });
-};
-
-// ОБНОВЛЕНИЕ АВАТАРА
-exports.updateAvatar = (req, res, next) => {
-  const { avatar } = req.body;
-  const { _id } = req.user;
-  User.findByIdAndUpdate(_id, { avatar }, { new: true, runValidators: true }).orFail()
-    .then((user) => sendData({ dataType: 'user' }, 200, user, res))
-    .catch((err) => {
-      if (err.name === ('CastError')) {
-        next(new BadRequestError(incorrectData));
-      } else if (err.name === 'ValidationError' && err.message.includes(incorrectAvatarLink)) {
-        next(new BadRequestError(incorrectAvatarLink));
       } else if (err.name === 'DocumentNotFoundError') {
         next(new NotFoundError(userNotFound));
       } else next(err);
