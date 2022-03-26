@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, errors } = require('celebrate');
 const routes = require('./routes/index');
-// const { auth } = require('./middlewares/auth');
+const { auth } = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { login, createUser } = require('./controllers/users');
 const {
@@ -39,8 +39,8 @@ app.use(requestLogger);
 app.post('/signup', celebrate(userCreationJoiScheme), createUser);
 app.post('/signin', celebrate(userLoginJoiScheme), login);
 
-// // защита маршрутов авторизацией (проверка токена)
-// app.use(auth);
+// защита маршрутов авторизацией (проверка токена)
+app.use(auth);
 
 // маршрутизация
 app.use(routes);

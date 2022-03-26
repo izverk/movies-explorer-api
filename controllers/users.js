@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const User = require('../models/user');
-const { sendData } = require('../utils/utils');
+
 const {
   BadRequestError,
   DuplicateMongoError,
@@ -99,10 +99,14 @@ exports.getCurrentUser = (req, res, next) => {
 
 // ОБНОВЛЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 exports.updateUser = (req, res, next) => {
-  const { name, about } = req.body;
+  const { email, name } = req.body;
   const { _id } = req.user;
-  User.findByIdAndUpdate(_id, { name, about }, { new: true, runValidators: true }).orFail()
-    .then((user) => sendData({ dataType: 'user' }, 200, user, res))
+  User.findByIdAndUpdate(_id, { email, name }, { new: true, runValidators: true }).orFail()
+    .then((user) => res.status(200).send({
+      name: user.name,
+      _id: user._id,
+      email: user.email,
+    }))
     .catch((err) => {
       if (err.name === ('CastError' || 'ValidationError')) {
         next(new BadRequestError(incorrectData));

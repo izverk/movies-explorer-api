@@ -13,7 +13,8 @@ exports.auth = (req, res, next) => {
   if (!authorization) {
     return next(new UnauthorizedError(authorizationRequired));
   }
-  const token = authorization.replace('Bearer ', '');
+  // const token = authorization.replace('Bearer ', '');
+  const token = authorization;
   let payload;
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : secretKey);
