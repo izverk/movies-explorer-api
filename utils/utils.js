@@ -5,8 +5,6 @@ module.exports.sendData = (type, resStatus, data, res) => {
     case 'user':
       res.status(resStatus).send({
         name: data.name,
-        about: data.about,
-        avatar: data.avatar,
         _id: data._id,
         email: data.email,
       });
