@@ -65,7 +65,7 @@ exports.login = (req, res, next) => {
             NODE_ENV === 'production' ? JWT_SECRET : secretKey,
             { expiresIn: '7d' },
           );
-          res.status(200).send({ token });
+          return res.status(200).send({ token });
         })
         .catch(next);
     })

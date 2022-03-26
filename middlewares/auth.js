@@ -22,5 +22,5 @@ exports.auth = (req, res, next) => {
     return next(new UnauthorizedError(authorizationRequired));
   }
   req.user = payload;
-  next();
+  return next();
 };

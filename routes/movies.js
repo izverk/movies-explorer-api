@@ -1,4 +1,4 @@
-const cardRoutes = require('express').Router();
+const movieRoutes = require('express').Router();
 const { celebrate } = require('celebrate');
 const {
   movieCreationJoiScheme,
@@ -8,10 +8,10 @@ const {
   createMovie,
   getMovies,
   deleteMovie,
-} = require('../controllers/cards');
+} = require('../controllers/movies');
 
-cardRoutes.post('/', celebrate(movieCreationJoiScheme), createMovie);
-cardRoutes.get('/', getMovies);
-cardRoutes.delete('/:_id', celebrate(movieParamsJoiScheme), deleteMovie);
+movieRoutes.post('/', celebrate(movieCreationJoiScheme), createMovie);
+movieRoutes.get('/', getMovies);
+movieRoutes.delete('/:_id', celebrate(movieParamsJoiScheme), deleteMovie);
 
-module.exports = cardRoutes;
+module.exports = movieRoutes;
