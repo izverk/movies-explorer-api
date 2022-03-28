@@ -20,8 +20,8 @@ const secretKey = 'secret-key-for-token-diploma';
 const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
-  'http://api.movies-explorer.izver.nomoredomains.work/',
-  'https://api.movies-explorer.izver.nomoredomains.work/',
+  'http://movies-explorer.izverk.nomoredomains.work/',
+  'https://movies-explorer.izverk.nomoredomains.work/',
 ];
 
 // список разрешенных методов для кросс-доменных запросов
