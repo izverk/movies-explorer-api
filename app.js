@@ -14,7 +14,7 @@ const {
 const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { NODE_ENV, PORT = 3001, MONGODB_PORT } = process.env;
+const { NODE_ENV, PORT = 3001, MONGODB_PORT: MONGODB_PATH } = process.env;
 
 const app = express();
 
@@ -57,7 +57,7 @@ app.use(errors());
 app.use(handleErrors);
 
 const main = async () => {
-  await mongoose.connect(NODE_ENV === 'production' ? MONGODB_PORT : 'mongodb://localhost:27017/moviesdb', {
+  await mongoose.connect(NODE_ENV === 'production' ? MONGODB_PATH : 'mongodb://localhost:27017/moviesdb', {
     useNewUrlParser: true,
   })
     .then(() => { console.log('Установлено соединение с БД!'); })
