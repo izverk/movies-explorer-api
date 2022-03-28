@@ -5,7 +5,7 @@ const simpleCorsHandler = (req, res, next) => {
   if (allowedCors.includes(origin)) {
     res.set('Access-Control-Allow-Origin', origin);
   }
-  next();
+  return next();
 };
 
 const preflightCorsHandler = (req, res, next) => {
@@ -16,7 +16,7 @@ const preflightCorsHandler = (req, res, next) => {
     res.set('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
-  next();
+  return next();
 };
 
 module.exports = { simpleCorsHandler, preflightCorsHandler };
