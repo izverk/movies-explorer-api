@@ -1,7 +1,6 @@
 const userRoutes = require('express').Router();
 const { celebrate } = require('celebrate');
 const {
-  userCreationJoiScheme,
   userUpdateJoiScheme,
 } = require('../validation/joiSchemes');
 const {
@@ -9,7 +8,7 @@ const {
   getCurrentUser,
 } = require('../controllers/users');
 
-userRoutes.get('/me', celebrate(userCreationJoiScheme), getCurrentUser);
+userRoutes.get('/me', getCurrentUser);
 userRoutes.patch('/me', celebrate(userUpdateJoiScheme), updateUser);
 
 module.exports = userRoutes;
