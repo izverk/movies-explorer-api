@@ -11,7 +11,7 @@ const {
   userCreationJoiScheme,
   userLoginJoiScheme,
 } = require('./validation/joiSchemes');
-// const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
+const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3001 } = process.env;
@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 // логгер запросов
 app.use(requestLogger);
 
-// // CORS
-// // обработчик простых CORS-запросов
-// app.use(simpleCorsHandler);
-// // обработчик предварительных CORS-запросов
-// app.use(preflightCorsHandler);
+// CORS
+// обработчик простых CORS-запросов
+app.use(simpleCorsHandler);
+// обработчик предварительных CORS-запросов
+app.use(preflightCorsHandler);
 
 // // код для краш-теста
 // app.get('/crash-test', () => {
