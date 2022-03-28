@@ -18,10 +18,10 @@ const secretKey = 'secret-key-for-token-diploma';
 
 // массив разрешенных доменов для кросс-доменных запросов
 const allowedCors = [
-  'http://izverk.students.nomoredomains.xyz',
   'http://localhost:3000',
-  'https://izverk.students.nomoredomains.xyz',
   'https://localhost:3000',
+  'http://api.movies-explorer.izver.nomoredomains.work/',
+  'https://api.movies-explorer.izver.nomoredomains.work/',
 ];
 
 // список разрешенных методов для кросс-доменных запросов

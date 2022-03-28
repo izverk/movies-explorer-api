@@ -2,10 +2,11 @@
 
 Репозиторий бэкенда проекта `movies-explorer`.
 
-Размещение проекта на Яндекс.Облаке (IP: ХХХХХХХХХХХХХХХХХХХХ): фронтенд -
-https://ЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁizverk.students.nomoredomains.xyz/;
+Размещение проекта на Яндекс.Облаке:
+фронтенд -
+https://movies-explorer.izverk.nomoredomains.work/;
 бэкенд -
-https://ЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁЁizverk.backend.students.nomoredomains.xyz/
+https://api.movies-explorer.izver.nomoredomains.work/
 
 ## Что за проект и о чем он
 
