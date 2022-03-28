@@ -37,14 +37,14 @@ app.get('/crash-test', () => {
 });
 
 // роуты, не требующие авторизации (регистрация и вход)
-app.post('/signup', celebrate(userCreationJoiScheme), createUser);
-app.post('/signin', celebrate(userLoginJoiScheme), login);
+app.post('api/signup', celebrate(userCreationJoiScheme), createUser);
+app.post('api/signin', celebrate(userLoginJoiScheme), login);
 
 // защита маршрутов авторизацией (проверка токена)
 app.use(auth);
 
 // маршрутизация
-app.use(routes);
+app.use('api/', routes);
 
 // логгер ошибок
 app.use(errorLogger);
