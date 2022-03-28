@@ -3,7 +3,6 @@ const userNotFound = 'Пользователь не найден';
 const movieNotFound = 'Фильм с указанным _id не найден';
 const incorrectData = 'Переданы некорректные данные';
 const mongoDuplicateKey = 'Пользователь с таким email уже существует';
-const successfulAuthorization = 'Успешная авторизация';
 const authorizationRequired = 'Требуется авторизация';
 const cantDeleteNotOwnMovie = 'Нельзя удалить чужой фильм';
 const incorrectEmailOrPassword = 'Неверный email или пароль';
@@ -36,7 +35,6 @@ module.exports = {
   mongoDuplicateKeyErrorCode,
   mongoDuplicateKey,
   incorrectEmailOrPassword,
-  successfulAuthorization,
   authorizationRequired,
   cantDeleteNotOwnMovie,
   secretKey,
