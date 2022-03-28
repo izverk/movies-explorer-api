@@ -14,7 +14,7 @@ const {
 const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { NODE_ENV, PORT = 3001, MONGODB_PORT: MONGODB_PATH } = process.env;
+const { NODE_ENV, PORT = 3001, MONGODB_PATH } = process.env;
 
 const app = express();
 
@@ -37,14 +37,14 @@ app.get('/crash-test', () => {
 });
 
 // роуты, не требующие авторизации (регистрация и вход)
-app.post('api/signup', celebrate(userCreationJoiScheme), createUser);
-app.post('api/signin', celebrate(userLoginJoiScheme), login);
+app.post('/api/signup', celebrate(userCreationJoiScheme), createUser);
+app.post('/api/signin', celebrate(userLoginJoiScheme), login);
 
 // защита маршрутов авторизацией (проверка токена)
 app.use(auth);
 
 // маршрутизация
-app.use('api/', routes);
+app.use('/api', routes);
 
 // логгер ошибок
 app.use(errorLogger);
