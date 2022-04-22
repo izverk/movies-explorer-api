@@ -26,7 +26,7 @@ exports.createMovie = (req, res, next) => {
 };
 
 exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  Movie.find({ owner: req.user })
     .then((movies) => {
       res.status(200).send(movies);
     })
