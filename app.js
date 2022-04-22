@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, errors } = require('celebrate');
+const cors = require('cors');
 const routes = require('./routes/index');
 const { auth } = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
@@ -11,7 +12,7 @@ const {
   userCreationJoiScheme,
   userLoginJoiScheme,
 } = require('./validation/joiSchemes');
-const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
+// const { simpleCorsHandler, preflightCorsHandler } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { NODE_ENV, PORT = 3001, MONGODB_PATH } = process.env;
@@ -24,10 +25,11 @@ app.use(bodyParser.json());
 app.use(requestLogger);
 
 // CORS
-// обработчик простых CORS-запросов
-app.use(simpleCorsHandler);
-// обработчик предварительных CORS-запросов
-app.use(preflightCorsHandler);
+// // обработчик простых CORS-запросов
+// app.use(simpleCorsHandler);
+// // обработчик предварительных CORS-запросов
+// app.use(preflightCorsHandler);
+app.use(cors());
 
 // код для краш-теста
 app.get('/crash-test', () => {
