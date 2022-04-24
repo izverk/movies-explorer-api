@@ -1,14 +1,19 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
+// const validator = require('validator');
+const { incorrectEmail } = require('../utils/constants');
 
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
     unique: true,
-    validate: {
-      validator: validator.isEmail,
-    },
+    match: [
+      /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
+      incorrectEmail,
+    ],
+    // validate: {
+    //   validator: validator.isEmail,
+    // },
   },
   password: {
     type: String,

@@ -3,14 +3,15 @@ const { Joi } = require('celebrate');
 exports.userCreationJoiScheme = {
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().email().required(),
+    // email: Joi.string().email().required(),
+    email: Joi.string().pattern(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i).required(),
     password: Joi.string().required(),
   }),
 };
 
 exports.userLoginJoiScheme = {
   body: Joi.object().keys({
-    email: Joi.string().email().required(),
+    email: Joi.string().pattern(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i).required(),
     password: Joi.string().required(),
   }),
 };
@@ -18,7 +19,7 @@ exports.userLoginJoiScheme = {
 exports.userUpdateJoiScheme = {
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().email().required(),
+    email: Joi.string().pattern(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i).required(),
   }),
 };
 

@@ -6,6 +6,7 @@ const mongoDuplicateKey = 'Пользователь с таким email уже �
 const authorizationRequired = 'Требуется авторизация';
 const cantDeleteNotOwnMovie = 'Нельзя удалить чужой фильм';
 const incorrectEmailOrPassword = 'Неверный email или пароль';
+const incorrectEmail = 'email не соответствует шаблону электронной почты';
 
 // количество проходов для хеширования пароля пользователя
 const saltRounds = 10;
@@ -31,6 +32,7 @@ module.exports = {
   userNotFound,
   movieNotFound,
   incorrectData,
+  incorrectEmail,
   saltRounds,
   mongoDuplicateKeyErrorCode,
   mongoDuplicateKey,
